@@ -20,7 +20,7 @@ MySQLSessionStore is a custom session store for Express.js applications, which u
 Install the package using npm:
 
 ```bash
-npm install mysqlsessionstore
+npm install serverless-mysql-session-store
 ```
 
 ## Usage
