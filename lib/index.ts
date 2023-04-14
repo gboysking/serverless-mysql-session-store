@@ -36,7 +36,13 @@ export class MySQLSessionStore extends Store {
             } else if (this.state === 'FAIL') {
                 reject();
             } else {
-                this.onReadyPromises.push(resolve);
+                this.onReadyPromises.push((error) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve();
+                    }
+                });
             }
         });
     }
@@ -98,7 +104,7 @@ export class MySQLSessionStore extends Store {
 
         while (Date.now() < endTime) {
             try {
-                if ( await this.isTableCreated() ) {
+                if (await this.isTableCreated()) {
                     return;
                 }
                 await new Promise(resolve => setTimeout(resolve, 1000));
@@ -126,7 +132,7 @@ export class MySQLSessionStore extends Store {
 
                     try {
                         let result = await this.queryAsync(createTableQuery) as ResultSetHeader;
-                        
+
                         if (result.warningStatus == 0) {
                             await this.waitUntilTableExists();
                         }

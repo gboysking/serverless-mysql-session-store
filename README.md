@@ -1,6 +1,6 @@
 # MySQLSessionStore
 
-A custom session store for Express.js using MySQL as the backend storage.
+A custom session store for Express.js using MySQL as the backend storage. It is based on the implementation described in [this blog post](https://tobelinuxer.tistory.com/66).
 
 ## Table of Contents
 
